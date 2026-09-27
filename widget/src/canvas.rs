@@ -297,20 +297,23 @@ where
 
         let state = tree.state.downcast_ref::<P::State>();
 
-        renderer.with_layer(bounds, |renderer| {
-            renderer.with_translation(
-                Vector::new(bounds.x, bounds.y),
-                |renderer| {
-                    let layers = self
-                        .program
-                        .draw(state, renderer, theme, bounds, cursor);
+        renderer.with_translation(
+            Vector::new(bounds.x, bounds.y),
+            |renderer| {
+                renderer.with_layer(
+                    Rectangle::with_size(bounds.size()),
+                    |renderer| {
+                        let layers = self
+                            .program
+                            .draw(state, renderer, theme, bounds, cursor);
 
-                    for layer in layers {
-                        renderer.draw_geometry(layer);
-                    }
-                },
-            );
-        });
+                        for layer in layers {
+                            renderer.draw_geometry(layer);
+                        }
+                    },
+                );
+            },
+        );
     }
 }
 
