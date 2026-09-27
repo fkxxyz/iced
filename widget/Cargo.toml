@@ -30,7 +30,7 @@ advanced = []
 crisp = []
 
 [dependencies]
-iced_renderer.workspace = true
+iced_renderer = "0.14.0"
 
 num-traits.workspace = true
 log.workspace = true
@@ -47,5 +47,4 @@ qrcode.optional = true
 pulldown-cmark.workspace = true
 pulldown-cmark.optional = true
 
-iced_highlighter.workspace = true
-iced_highlighter.optional = true
+iced_highlighter = { version = "0.14.0", optional = true }
